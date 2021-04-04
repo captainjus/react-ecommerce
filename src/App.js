@@ -6,6 +6,7 @@ import CheckoutPage from "./pages/checkout_page";
 import StorePage from './pages/store_page'
 import DataPage from './pages/data_page'
 
+
 class App extends Component {
     state = {
         userId: null,
@@ -31,7 +32,15 @@ class App extends Component {
                 },
                 quantity: 0
             }
-        ]
+        ],
+        currencyList:
+            {
+            USD:"USD",
+            CAD:"CAD",
+            EUR:"EUR",
+            GBP:"GBP",
+            JPY:"JPY"
+            }
     }
 
     render() {
@@ -43,7 +52,7 @@ class App extends Component {
                         <Route exact path='/' component={StorePage} />
                         <Route path='/store' component={StorePage} />
                         <Route path='/checkout' render={props =>
-                        (<CheckoutPage items={this.state.itemData}/>)}/>
+                        (<CheckoutPage items={this.state.cartData}/>)}/>
 
                         <Route path='/data' component={DataPage}/>
                     </Switch>
