@@ -6,6 +6,9 @@ import CheckoutPage from "./pages/checkout_page";
 import StorePage from './pages/store_page'
 import DataPage from './pages/data_page'
 
+const STORE_URL = "https://fakestoreapi.com"
+const EXCHANGE_RATE_URL = "http://data.fixer.io/api"
+
 class App extends Component {
     state = {
         userId: null,
