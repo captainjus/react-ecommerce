@@ -60,8 +60,10 @@ class App extends Component {
                     <Switch>
                         <Route exact path='/' component={StorePage} />
                         <Route path='/store' component={StorePage} />
-                        <Route path='/checkout' component={CheckoutPage} />
-                        <Route path='/data' component={DataPage} />
+                        <Route path='/checkout' render={props =>
+                        (<CheckoutPage items={this.state.itemData}/>)}/>
+
+                        <Route path='/data' component={DataPage}/>
                     </Switch>
                 </main>
             </div>
