@@ -37,6 +37,21 @@ class App extends Component {
         ]
     }
 
+    componentDidMount() {
+        console.log("App is now mounted.")
+        this.loadItemData();
+    }
+
+    loadItemData() {
+        this.setState({ loading: true })
+        console.log("Loading item data")
+        fetch(STORE_URL + "/items")
+            .then(data => data.json())
+            .then(data => this.setState(
+                { itemData: data, loading: false }
+            ))
+    }
+
     render() {
         return (
             <div className="App">

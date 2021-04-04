@@ -1,33 +1,32 @@
 import React from "react"
+import { Container, Card, CardColumns } from 'react-bootstrap';
 
-const ItemCard = ({ item, index, handleSelect }) => {
+const ItemCard = ({ item }) => {
     return (
-        <div
-            id={item.id} name={item.name}
-            onClick={() => { handleSelect(item.name, item.id, item.price) }}
-            type="button"
-        >
-            <Card bg="primary" text="white" style={{ height: "200px" }}>
-                <Card.Body>
-                    <Card.Title style={{ fontSize: "12px" }}>{index}</Card.Title>
-                    <Card.Subtitle style={{ fontSize: "16px", textAlign: "center" }}>{item.name}</Card.Subtitle>
-                    <Card.Text style={{ fontSize: "16px", textAlign: "center" }}>
-                        <br />
-                        ${item.price}
-                    </Card.Text>
-                    <Card.Footer style={{ fontSize: "12px", textAlign: "center" }}>Quantity left: {item.quantity}</Card.Footer>
-                </Card.Body>
-            </Card>
-        </div>
+        <Card bg="primary" text="white" style={{ height: "200px" }}>
+            <Card.Body>
+                {item.title}
+                {item.price}
+                {item.description}
+                {item.image}
+                {item.category}
+            </Card.Body>
+        </Card>
     );
 }
 
 function StorePage() {
     return (
-        <div id="home_page" className="App-page App-header">
-            stoire sotoer
+        <div id="store_page" className="App-page App-header">
+            <Container>
+                <CardColumns>
+                    {this.props.items.map((item, i) => {
+                        return <ItemCard item={item} key={i}/>
+                    })}
+                </CardColumns>
+            </Container>
         </div>
     )
 }
- 
+
 export default StorePage
