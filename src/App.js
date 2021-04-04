@@ -7,6 +7,33 @@ import StorePage from './pages/store_page'
 import DataPage from './pages/data_page'
 
 class App extends Component {
+    state = {
+        userId: null,
+        itemData: [
+            {
+                title: "test product",
+                price: 1.99,
+                description: "lorem ipsum set",
+                image: "https://i.pravatar.cc",
+                category: "electronic"
+            }
+        ],
+        cartData: [
+            {
+                title: "test product",
+                price: 1.99,
+                exchangeRate: {
+                    USD: 1.1234,
+                    CAD: 1.1234,
+                    EUR: 1.1234,
+                    GBP: 1.1234,
+                    JPY: 1.1234,
+                },
+                quantity: 0
+            }
+        ]
+    }
+
     render() {
         return (
             <div className="App">
