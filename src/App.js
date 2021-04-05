@@ -5,6 +5,8 @@ import NavBar from "./components/nav_bar"
 import CheckoutPage from "./pages/checkout_page";
 import StorePage from './pages/store_page'
 import DataPage from './pages/data_page'
+import axios from 'axios';
+import UserServiceFetch from './services/UserServiceFetch'
 
 const STORE_URL = "https://fakestoreapi.com"
 const EXCHANGE_RATE_URL = "http://data.fixer.io/api"
@@ -34,7 +36,21 @@ class App extends Component {
                 },
                 quantity: 0
             }
-        ]
+        ],
+        currentCurrency:"USD"
+    }
+
+    handleCurrencySelect = (event) =>{
+        let selected = event.target.value;
+        this.setState({currentCurrency:selected})
+    }
+
+    handleTestAxios = (event) =>{
+
+        UserServiceFetch.addPurchase().then((response =>
+            console.log(response)
+        ));
+
     }
 
     render() {
@@ -45,8 +61,10 @@ class App extends Component {
                     <Switch>
                         <Route exact path='/' component={StorePage} />
                         <Route path='/store' component={StorePage} />
-                        <Route path='/checkout' component={CheckoutPage} />
-                        <Route path='/data' component={DataPage} />
+                        <Route path='/checkout' render={props =>
+                        (<CheckoutPage items={this.state.cartData} currency={this.state.currentCurrency} handleCurrencySelect={this.handleCurrencySelect} handleTestAxios={this.handleTestAxios}/>)}/>
+
+                        <Route path='/data' component={DataPage}/>
                     </Switch>
                 </main>
             </div>
