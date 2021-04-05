@@ -5,7 +5,8 @@ import NavBar from "./components/nav_bar"
 import CheckoutPage from "./pages/checkout_page";
 import StorePage from './pages/store_page'
 import DataPage from './pages/data_page'
-
+import axios from 'axios';
+import UserServiceFetch from './services/UserServiceFetch'
 
 class App extends Component {
     state = {
@@ -33,14 +34,20 @@ class App extends Component {
                 quantity: 0
             }
         ],
-        currencyList:
-            {
-            USD:"USD",
-            CAD:"CAD",
-            EUR:"EUR",
-            GBP:"GBP",
-            JPY:"JPY"
-            }
+        currentCurrency:"USD"
+    }
+
+    handleCurrencySelect = (event) =>{
+        let selected = event.target.value;
+        this.setState({currentCurrency:selected})
+    }
+
+    handleTestAxios = (event) =>{
+
+        UserServiceFetch.addItem().then((response =>
+            console.log(response)
+        ));
+
     }
 
     render() {
@@ -52,7 +59,7 @@ class App extends Component {
                         <Route exact path='/' component={StorePage} />
                         <Route path='/store' component={StorePage} />
                         <Route path='/checkout' render={props =>
-                        (<CheckoutPage items={this.state.cartData}/>)}/>
+                        (<CheckoutPage items={this.state.cartData} currency={this.state.currentCurrency} handleCurrencySelect={this.handleCurrencySelect} handleTestAxios={this.handleTestAxios}/>)}/>
 
                         <Route path='/data' component={DataPage}/>
                     </Switch>

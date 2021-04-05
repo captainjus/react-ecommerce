@@ -1,6 +1,6 @@
-import React from 'react'
-import { Card, Button, Container, Row, Col } from 'react-bootstrap'
-
+import React from 'react';
+import { Card, Button, Container, Row, Col } from 'react-bootstrap';
+import axios from 'axios';
 
 
 const ListedItem = ({item, key }) =>{
@@ -30,7 +30,7 @@ class CheckoutPage extends React.Component {
 
 
   render(){
-      let{items} = this.props
+      let{items, currency, handleCurrencySelect, handleTestAxios} = this.props
       return (
         <Container fluid>
             <Row>
@@ -50,15 +50,18 @@ class CheckoutPage extends React.Component {
                 <Col sm={4}>
                     <input type="text" defaultValue="Deposit Money"/>
                     <hr/>
-                    <select>
-                        <option value="USD">USD</option>
+                    <span>Select Currency</span>
+                    <br/>
+                    <select value={currency} onChange={handleCurrencySelect}>
+                        <option selected value="USD">USD</option>
                         <option value="CAD">CAD</option>
                         <option value="EUR">EUR</option>
                         <option value="GBP">GBP</option>
                         <option value="JPY">JPY</option>
                     </select>
+
                     <hr/>
-                    <Button>
+                    <Button onClick={handleTestAxios}>
                         Purchase
                    </Button>
                    <hr/>
