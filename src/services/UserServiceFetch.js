@@ -1,8 +1,15 @@
+import axios from 'axios';
+
 class UserServiceFetch{
-    addItem(){
-        return fetch('http://localhost:8080/item/addItem',{
-            method:"post",
-        }).then(response => response.json())
+    addPurchase(){
+        return axios.post('http://localhost:8080/cart/makePurchase',{
+            purchaseID:75,
+            purchaseDate:null,
+            currency:"USD",
+            exchange:null,
+            customer:null,
+            items:null
+        }).then(response => response.json)
     }
 }
 

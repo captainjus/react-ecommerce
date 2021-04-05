@@ -44,7 +44,7 @@ class App extends Component {
 
     handleTestAxios = (event) =>{
 
-        UserServiceFetch.addItem().then((response =>
+        UserServiceFetch.addPurchase().then((response =>
             console.log(response)
         ));
 
